@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
   else if (mode === 'summary') systemPrompt = summarySystemPrompt(chapterContent)
   else systemPrompt = exerciseSystemPrompt(chapterContent, exerciseContent)
 
-  const history: ChatMessage[] = session.messages.map((m) => ({
+  const history: ChatMessage[] = (session.messages as any[]).map((m) => ({
     role: m.role as 'user' | 'assistant',
     content: m.content,
   }))
